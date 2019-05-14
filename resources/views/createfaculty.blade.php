@@ -47,10 +47,22 @@
 @endforeach
                 </select>
             </div>
-
-
-
         </div>
+
+
+
+            <div class="form-row">
+                <div class="col-sm-6">
+                    <select name="tags" id="tags" class="form-control">
+                        @foreach($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+            </div>
+
+
 
 
 

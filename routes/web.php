@@ -3,6 +3,7 @@
 
 use App\Faculty;
 use App\Location;
+use App\Tags;
 Route::get('/', function () {
 
     $faculties = Faculty::paginate(5);
@@ -13,7 +14,8 @@ Route::get('/', function () {
 Route::get('/create', function () {
 
     $locations = Location::all();
-    return view("createfaculty",compact('locations'));
+    $tags = Tags::all();
+    return view("createfaculty",compact('locations','tags'));
 });
 
 

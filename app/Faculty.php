@@ -15,7 +15,9 @@ class Faculty extends Model
         return $this->hasOne('App\Location','location_id');
     }
 
-
+    public function tags(){
+        return $this->belongsToMany('App\Tags');
+    }
 
 
 }

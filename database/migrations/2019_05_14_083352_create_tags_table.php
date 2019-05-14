@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocationTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateLocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('location', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('state');
+            $table->string('title');
 
         });
     }
@@ -27,6 +27,6 @@ class CreateLocationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location');
+        Schema::dropIfExists('tags');
     }
 }

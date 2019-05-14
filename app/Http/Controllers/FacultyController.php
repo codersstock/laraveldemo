@@ -6,6 +6,9 @@ use App\Faculty;
 use App\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mockery\Exception;
+use Session;
+use App\Tags;
 
 
 class FacultyController extends Controller
@@ -82,12 +85,40 @@ echo json_encode($data);
     public function store(Request $request)
     {
 
-        $t = Location::find($request->input('location_id'));
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'location_id' => 'required'
+        ]);
+
+
+      //  $t = Location::find();
           $f = new Faculty(['name'=>$request->input('name'),'email'=>$request->input('email'),'address'=>$request->input('address'),'emailsecondary'=>$request->input('emailsecondary'),
           'fax'=> $request->input('fax'),
-                'phone'=> $request->input('phone')
+                'phone'=> $request->input('phone'),
+              'location_id'=>$request->input('location_id')
           ]);
-$t->faculties()->save($f);
+
+             if ($f->save()) {
+                 $tag = $request->input('tags');
+                 $tags = Tags::find([$tag]);
+                 $f->tags()->attach($tags);
+
+
+                 Session::flash('message', 'your post added');
+                 return redirect('/');
+             }
+             else{
+
+
+                     Session::flash('fail','failed to add post');
+
+                     return redirect('/create');
+                 }
+
+
 
 //
 //
@@ -100,7 +131,7 @@ $t->faculties()->save($f);
 //        $f->location_id = 1;
 //
 //        $f->save();
-        return redirect('/');
+
 
     }
 
@@ -126,9 +157,12 @@ $t->faculties()->save($f);
 
 
         $faculty = Faculty::find($id);
+        $tags = DB::table('faculty_tags')->where('faculty_id','=',$id)
+           -> join('tags', 'faculty_tags.tags_id', '=', 'tags.id')
+            ->get();
         $locations = Location::all();
-
-        return view("editfaculty",compact('locations','faculty'));
+        $tag_list = Tags::all();
+        return view("editfaculty",compact('locations','faculty','tags','tag_list'));
     }
 
     /**
@@ -149,8 +183,16 @@ $t->faculties()->save($f);
         $f->address = $request->input('address');
         $f->location_id = $request->input('location_id');
 
-        $f->save();
-return redirect('/');
+        if($f->save()){
+            $tag = $request->input('tags');
+            $tags = Tags::find([$tag]);
+            $f->tags()->attach($tags);
+
+        }
+
+
+            return redirect('/');
+
 
 
     }
