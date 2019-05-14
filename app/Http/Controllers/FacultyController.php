@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Faculty;
 use App\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class FacultyController extends Controller
 {
@@ -17,6 +19,49 @@ class FacultyController extends Controller
     {
 
     }
+
+    public function search(Request $request){
+global $output;
+global $data;
+        if($request->ajax()){
+
+        $query = $request->get('search');
+        if($query!=''){
+            $data = DB::table('faculties')->where('name','like','%' .  $query .'%')
+                ->orwhere('address','like','%' .  $query .'%')->get();
+        }
+        else{
+            $data = DB::table('faculties')->get();
+        }
+
+        $total_row = $data->count();
+if($total_row>0){
+foreach($data as $row){
+    $output = "<tr>";
+    $output.= "<td>" .  $row->name ."</td></tr>";
+}
+
+   }
+else{
+    $output = '<tr><td>No results found</td></tr>';
+}
+$data = array(
+  'table_data' => $output
+);
+
+echo json_encode($data);
+
+
+
+        }
+    }
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

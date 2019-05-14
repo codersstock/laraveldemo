@@ -18,6 +18,9 @@ Route::get('/create', function () {
 
 
 
+Route::get('/faculty/Search','FacultyController@search')->name('faculty.search');
+
+
 
 Route::get('/faculties',function(){
    $l = Location::find(1);
