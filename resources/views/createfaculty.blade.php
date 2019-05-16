@@ -51,11 +51,18 @@
 
 
 
-        <div><input type="text" name="mytag"></div>
+        <div class="form-group">
+<div class="col-sm-6">
+
+    <input type="text" class="form-control" name="mytag">
+    <small class="text-muted">Tags seperated by commas</small>
+
+</div>
+
+        </div>
 
 
         <br><br>
-        <div id="result"></div>
 
 
 

@@ -54,14 +54,20 @@
                 </select>
             </div>
 
-
-
         </div>
 
 
-        <div><input type="text" name="mytag"></div>
 
+        <div class="form-group">
+            <div class="col-sm-6">
 
+                <input type="text" class="form-control" name="mytag">
+                <small class="text-muted">Tags seperated by commas</small>
+
+            </div>
+
+        </div>
+{{--below tag[] used for passing multiple values means multiple textfield to controller--}}
 {{--        <div><input type="text" name="mytag[]" id="mytags"></div>--}}
 {{--        <div><input type="text" name="mytag[]" id="mytags"></div>--}}
 
