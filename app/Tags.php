@@ -12,9 +12,6 @@ class Tags extends Model
 
     protected $table = 'tags';
 
-    public function faculties(){
-        return $this->belongsToMany('App\Faculty');
-    }
 
 
 }

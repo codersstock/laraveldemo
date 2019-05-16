@@ -17,6 +17,7 @@ mix.combine(
     [
         "resources/jslibs/query.js",
         "resources/jslibs/bootstrap.js",
+        "resources/jslibs/theme.js",
 
     ],
     "public/js/all.js"

@@ -102,9 +102,23 @@ echo json_encode($data);
           ]);
 
              if ($f->save()) {
-                 $tag = $request->input('tags');
-                 $tags = Tags::find([$tag]);
-                 $f->tags()->attach($tags);
+
+                 $tag = $request->input('mytag');
+                 $tags = explode(',' ,$tag);
+                 $length = count($tags);
+
+
+
+
+                 for ($i = 0; $i < $length; $i++) {
+
+                     if ($tags[$i] != '') {
+                         $t = new Tags();
+                         $t->title = $tags[$i];
+                         $f->tags()->save($t); // will save the tags for the faculty.
+                     }
+                 }
+
 
 
                  Session::flash('message', 'your post added');
@@ -157,12 +171,9 @@ echo json_encode($data);
 
 
         $faculty = Faculty::find($id);
-        $tags = DB::table('faculty_tags')->where('faculty_id','=',$id)
-           -> join('tags', 'faculty_tags.tags_id', '=', 'tags.id')
-            ->get();
+        $tags = DB::table('tags')->where('faculty_id','=',$id)->get();
         $locations = Location::all();
-        $tag_list = Tags::all();
-        return view("editfaculty",compact('locations','faculty','tags','tag_list'));
+        return view("editfaculty",compact('locations','faculty','tags'));
     }
 
     /**
@@ -184,14 +195,34 @@ echo json_encode($data);
         $f->location_id = $request->input('location_id');
 
         if($f->save()){
-            $tag = $request->input('tags');
-            $tags = Tags::find([$tag]);
-            $f->tags()->attach($tags);
+
+
+
+
+            $tag = $request->input('mytag');
+            $tags = explode(',' ,$tag);
+            $length = count($tags);
+
+
+
+
+                for ($i = 0; $i < $length; $i++) {
+
+                    if ($tags[$i] != '') {
+                        $t = new Tags();
+                        $t->title = $tags[$i];
+                        $f->tags()->save($t); // will save the tags for the faculty.
+                    }
+                }
+
+
+
+
 
         }
 
 
-            return redirect('/');
+            return redirect('faculty/' .$id .'/edit');
 
 
 

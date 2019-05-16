@@ -63,5 +63,29 @@
 </div>
 
 <script src="{{url('js/app.js')}}"></script>
+
+
+
+
+
+
+<script type="text/javascript">
+    document.getElementById("mytags").onkeypress = function(event){
+        if (event.keyCode == 13 || event.which == 13){
+            var tags = document.getElementById("mytags");
+
+            var result = document.getElementById("result");
+            result.innerHTML += "<p class='badge badge-primary m-2'>" +  tags.value + "</p>";
+                tags.value = null;
+
+           // alert("You are clicked hjjhhjhjhjhj");
+        }
+    };
+</script>
+
+
+
+
+
 </body>
 </html>

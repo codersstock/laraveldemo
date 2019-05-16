@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
 use Illuminate\Http\Request;
 use App\Tags;
 
@@ -80,8 +81,12 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
-        //
+
+        $tag = Tags::find($id);
+        $tag->delete();
+        $fId = $request->input('facultyid');
+        return redirect('faculty/' . $fId .  '/edit');
     }
 }

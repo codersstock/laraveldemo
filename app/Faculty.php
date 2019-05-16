@@ -16,7 +16,7 @@ class Faculty extends Model
     }
 
     public function tags(){
-        return $this->belongsToMany('App\Tags');
+        return $this->hasMany('App\Tags');
     }
 
 

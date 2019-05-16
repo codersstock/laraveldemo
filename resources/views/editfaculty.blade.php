@@ -57,35 +57,54 @@
 
 
         </div>
-        <h4>tags</h4>
 
-        <div class="label-group">
-            @foreach($tags as $tag)
 
-                <span class="badge badge-primary">
-                    {{$tag->title}}
-                </span>
-            @endforeach
+        <div><input type="text" name="mytag"></div>
 
-        </div>
-        <br><br>
-        <div class="form-row">
-            <div class="col-sm-6">
-                <select name="tags" id="tags" class="form-control">
-                    @foreach($tag_list as $tag)
-                        <option value="{{$tag->id}}">{{$tag->title}}</option>
-                    @endforeach
-                </select>
-            </div>
 
-        </div>
+{{--        <div><input type="text" name="mytag[]" id="mytags"></div>--}}
+{{--        <div><input type="text" name="mytag[]" id="mytags"></div>--}}
+
 
         <input type="submit" class="mt-3" value="update">
 
 
     </form>
+</div>
 
+        @foreach($tags as $tag)
+            <form action="{{route('tag.destroy',[$tag->id])}}" method="POST">
+
+<div class="col-sm-3">
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{$tag->title}}
+
+
+
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="facultyid" value="{{$faculty->id}}">
+
+        <button type="submit">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+
+
+    </div>
 
 </div>
+            </form>
+
+        @endforeach
+
+
+
+
+
+
+
+
+
 
 @endsection

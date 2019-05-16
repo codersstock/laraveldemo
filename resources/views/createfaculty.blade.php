@@ -28,7 +28,7 @@
         </div>
         <div class="form-row">
             <div class="col-sm-6">
-                <input class="form-control" type="text" name="fax" id="" placeholder="Enter fax">
+                <input class="form-control" type="text" name="fax" id="fax" placeholder="Enter fax">
             </div>
             <div class="col-sm-6">
                 <input class="form-control" type="text" name="address" id="" placeholder="Enter address">
@@ -51,18 +51,11 @@
 
 
 
-            <div class="form-row">
-                <div class="col-sm-6">
-                    <select name="tags" id="tags" class="form-control">
-                        @foreach($tags as $tag)
-                            <option value="{{$tag->id}}">{{$tag->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-            </div>
+        <div><input type="text" name="mytag"></div>
 
 
+        <br><br>
+        <div id="result"></div>
 
 
 
@@ -72,6 +65,10 @@
 
     </form>
 
+
+
+
+{{--    <div><input type="text" id="mytags"></div>--}}
 
 
 

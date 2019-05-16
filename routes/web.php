@@ -30,3 +30,4 @@ Route::get('/faculties',function(){
 });
 
 Route::resource('faculty','FacultyController');
+Route::resource('tag','TagController');
