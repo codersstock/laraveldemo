@@ -194,6 +194,24 @@ echo json_encode($data);
         $f->address = $request->input('address');
         $f->location_id = $request->input('location_id');
 
+
+   $this->validate($request,[
+    'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       'name'=>'required|max:50',
+       'phone'=>'required|numeric',
+       'fax'=>'required|max:100',
+       'address'=>'required|max:255',
+     'location_id'=>'required',
+       'email'=>'required|email|max:200',
+       'emailsecondary'=>'max:200'
+      ]);
+
+    $image = $request->file('image');
+    $name_img = rand() .  "."   . $image->getClientOriginalExtension();
+      $image->move(public_path("images",$name_img));
+
+
+
         if($f->save()){
 
 
@@ -222,8 +240,8 @@ echo json_encode($data);
         }
 
 
-            return redirect('faculty/' .$id .'/edit');
-
+//            return redirect('faculty/' .$id .'/edit');
+return back();   // for return back to your page
 
 
     }

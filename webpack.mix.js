@@ -15,15 +15,19 @@ mix.js("resources/js/app.js", "public/js");
 //.extract(["vue"]);
 mix.combine(
     [
-        "resources/jslibs/query.js",
-        "resources/jslibs/bootstrap.js",
-        "resources/jslibs/theme.js",
-
+        "resources/js/jquery.min.js",
+        "resources/js/selectize.js",
+        "resources/js/index.js"
     ],
     "public/js/all.js"
 );
 
 mix.styles(
-    ["resources/lib/bootstrap.css"],
+    [
+        "resources/lib/bootstrap.css",
+        "resources/lib/normalize.css",
+        "resources/lib/selectize.default.css"
+
+    ],
     "public/css/app.css"
 );

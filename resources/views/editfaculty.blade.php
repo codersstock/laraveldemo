@@ -6,7 +6,18 @@
 
     <a href="/" class="btn btn-warning m-3">Go Back</a>
 
-    <form action="{{route('faculty.update',$faculty->id)}}" method="POST">
+    @if(count($errors))
+@foreach($errors->all() as $error)
+<div class="alert alert-danger">
+    {{$error}}
+
+
+</div>
+
+@endforeach
+@endif
+
+    <form action="{{route('faculty.update',$faculty->id)}}" enctype="multipart/form-data" method="POST">
         @csrf
 
         <input type="hidden" name="_method" value="PUT">
@@ -49,14 +60,28 @@
             <div class="col-sm-6">
                 <select name="location_id" id="" class="form-control">
                     @foreach($locations as $location)
-                        <option value="{{$location->id}}">{{$location->state}}</option>
+
+                        <option value="{{$location->id}}"
+
+                                @if ($location->id == $faculty->id)
+                        selected="selected"
+                        @endif
+
+
+                        >  {{$location->state}}</option>
                     @endforeach
                 </select>
             </div>
 
+
+
+            <div class="col-sm-6">
+
+                <input type="file" name="image" class="form-control">
+
+
+            </div>
         </div>
-
-
 
         <div class="form-group">
             <div class="col-sm-6">
@@ -100,11 +125,22 @@
     </div>
 
 </div>
+
+
+
+
+
+
             </form>
 
+
+
+
+
+
+
+
         @endforeach
-
-
 
 
 
