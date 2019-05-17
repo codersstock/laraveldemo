@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        @partial('header')
+        @partial('header2')
 
         @content()
 

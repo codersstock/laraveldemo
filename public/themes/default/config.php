@@ -32,24 +32,26 @@ return array(
 
 		'before' => function($theme)
 		{
-			$theme->setTitle('Title example');
-			$theme->setAuthor('Jonh Doe');
+			$theme->setTitle('Admin Panel');
+			$theme->setAuthor('Abdul Mujeeb');
 		},
 
 		'asset' => function($asset)
 		{
 			$asset->themePath()->add([
-										['style', 'css/style.css'],
-										['script', 'js/script.js']
+										['style', 'css/style.css']
+										
 									 ]);
 
 			// You may use elixir to concat styles and scripts.
-			/*
+			
 			$asset->themePath()->add([
-										['styles', 'dist/css/styles.css'],
-										['scripts', 'dist/js/scripts.js']
+										['bootstrap-style', 'css/bootstrap.min.css'],
+										['bootstrap-query', 'js/query.js'],					
+										['bootstrap-script', 'js/bootstrap.js']
 									 ]);
-			*/
+		
+					
 
 			// Or you may use this event to set up your assets.
 			/*

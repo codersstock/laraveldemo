@@ -11,6 +11,20 @@ Route::get('/', function () {
     return view("faculty",compact('faculties',));
 });
 
+
+
+Route::get('/admin',function(){
+    return Theme::view('index');
+});
+
+
+Route::get('/admin/1',function(){
+    return Theme::view([
+        'view'=>'index',
+        'layout'=>'mobile'
+    ]);
+});
+
 Route::get('/create', function () {
 
     $locations = Location::all();

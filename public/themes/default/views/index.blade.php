@@ -1,1 +1,1 @@
-@sections('main')
+@sections('main2')
